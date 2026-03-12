@@ -12,7 +12,7 @@ export default function Page() {
         setIsloading(true);
         console.log(data)
         try {
-        const resp=await axios.post(`http://localhost:4000/api/field/create`,data,{withCredentials:true})
+        const resp=await axios.post(`https://invbackend-shqm.onrender.com/api/field/create`,data,{withCredentials:true})
         console.log(resp)
         if (resp.status==200) {
         router.push("/Dashboard")

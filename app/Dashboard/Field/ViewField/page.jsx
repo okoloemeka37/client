@@ -11,7 +11,7 @@ export default function Page() {
     setLoading(true);
     setError(null);
     try {
-      const resp = await axios.get(`http://localhost:4000/api/field/get`, { withCredentials: true });
+      const resp = await axios.get(`https://invbackend-shqm.onrender.com/api/field/get`, { withCredentials: true });
       if (resp.status === 200) {
         setFields(resp.data);
       }

@@ -18,7 +18,7 @@ export default function Login() {
         e.preventDefault();
       z
         try {
-        const resp=await axios.post(`http://localhost:4000/api/auth/login`,data,{withCredentials:true})
+        const resp=await axios.post(`https://invbackend-shqm.onrender.com/api/auth/login`,data,{withCredentials:true})
         if (resp.status==200) {
                   login(resp.data);
         router.push("/Dashboard")
