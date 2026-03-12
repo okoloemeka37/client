@@ -16,7 +16,6 @@ export default function Login() {
 
       const submit = async (e)=> {
         e.preventDefault();
-      z
         try {
         const resp=await axios.post(`https://invbackend-shqm.onrender.com/api/auth/login`,data,{withCredentials:true})
         if (resp.status==200) {
