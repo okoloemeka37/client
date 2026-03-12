@@ -1,8 +1,10 @@
 'use client'
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
+import { useAuth } from '@/app/context/AuthContext.js';
 
-export default function Page() {
+export default function ViewFPage() {
+   const{Server_Url}=useAuth()
   const [fields, setFields] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -11,7 +13,7 @@ export default function Page() {
     setLoading(true);
     setError(null);
     try {
-      const resp = await axios.get(`https://invbackend-shqm.onrender.com/api/field/get`, { withCredentials: true });
+      const resp = await axios.get(`${Server_Url}field/get`, { withCredentials: true });
       if (resp.status === 200) {
         setFields(resp.data);
       }

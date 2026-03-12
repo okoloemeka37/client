@@ -7,7 +7,7 @@ const AuthContext=createContext({
     isAuthenticated:false,
    login:(data)=>{},
     logout:()=>{}, 
-    Server_Url:'',
+    Server_Url:'https://invbackend-shqm.onrender.com/api/',
     userCred: {userName: '', email: ''}
 
 });
@@ -17,7 +17,7 @@ export const Authprovider=({ children })=>{
 
   const router=useRouter(); 
  const [userCred, setuserCred] = useState({name:'',email:''})
-
+//http://localhost:4000
  const [Server_Url]=useState("https://invbackend-shqm.onrender.com/api/")
     const [isAuthenticated, setisAuthenticated] = useState(false);
  
@@ -26,7 +26,7 @@ export const Authprovider=({ children })=>{
  
 async function checkAuth() {
   try {
-    const resp= await axios.get("https://invbackend-shqm.onrender.com/api/auth/checkAuth",{withCredentials:true});
+    const resp= await axios.get(`${Server_Url}auth/checkAuth`,{withCredentials:true});
    setuserCred(resp.data.user)
    if (Pathname=="/Auth/Login"){
     router.push('/Dashboard')
@@ -46,7 +46,7 @@ async function checkAuth() {
 
 async function logout() {
     try {
-      const resp =await axios.get("https://invbackend-shqm.onrender.com/api/auth/logout", {withCredentials:true});
+      const resp =await axios.get(`${Server_Url}auth/logout`, {withCredentials:true});
       console.log(resp.data)
       setisAuthenticated(false);
       setuserCred({userName:'',email:''})

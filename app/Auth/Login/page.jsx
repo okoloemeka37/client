@@ -1,16 +1,18 @@
 'use client'
 import  { useRouter } from 'next/navigation'
 import {useState}  from 'react'
-import {login}  from '../../Function.js';
 import axios from 'axios'
 import { useAuth } from '@/app/context/AuthContext.js';
+import { Eye, EyeOff } from "lucide-react";
+
 
 export default function Login() {
   const router=useRouter()
+  const [show,setShow]=useState(false)
   const [data, setdata] = useState({userName:'',password:""})
   const [error, seterror] = useState({userName:'',password:"",color:"",message:'',gen:''})
   const [Isloading, setIsloading] = useState(false);
- const{login}=useAuth()
+ const{login,Server_Url}=useAuth()
 
 
 
@@ -18,7 +20,8 @@ export default function Login() {
         e.preventDefault();
         setIsloading(true)
         try {
-        const resp=await axios.post(`https://invbackend-shqm.onrender.com/api/auth/login`,data,{withCredentials:true})
+          setIsloading(false)
+        const resp=await axios.post(`${Server_Url}auth/login`,data,{withCredentials:true})
         if (resp.status==200) {
                 login(resp.data);
         router.push("/Dashboard")
@@ -50,9 +53,13 @@ export default function Login() {
           </div>
 
           <div>
-            <label className="block text-gray-600 text-sm mb-1">Password</label>
-            <input type="password" placeholder="••••••••" value={data.password} onChange={(e)=>{setdata(prev=>({...prev,password:e.target.value}))}}   className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none transition" />
-                <p className='text-red-600'>{error['password']}</p>
+            <label className="block text-gray-600 text-sm mb-1">Password</label> 
+            <div className='flex items-baseline w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none transition'>
+                <input className='w-full outline-0'  type={show ? "text" : "password"} placeholder="••••••••" value={data.password} onChange={(e)=>{setdata(prev=>({...prev,password:e.target.value}))}}  />
+                 <p onClick={() => setShow(!show)}  className=" text-gray-500 hover:text-gray-700">{show ? <EyeOff size={18} /> : <Eye size={18} />}</p>
+            </div>
+             <p className='text-red-600'>{error['password']}</p>
+
           </div>
 
           <button type="submit" disabled={Isloading} className={`w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-xl font-semibold  hover:from-blue-700 hover:to-purple-700  transition-all shadow-md  ${Isloading ? "opacity-80 cursor-not-allowed" : ""}`} onClick={submit}>
