@@ -18,6 +18,7 @@ export default function CreateFPage() {
         setIsloading(true);
         console.log(data)
         try {
+          setIsloading(false);
         const resp=await axios.post(`${Server_Url}field/create`,data,{withCredentials:true})
         console.log(resp)
         if (resp.status==200) {
