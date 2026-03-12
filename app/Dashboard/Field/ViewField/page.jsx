@@ -41,7 +41,6 @@ export default function Page() {
           <table className="min-w-full bg-white border border-gray-200">
             <thead className="bg-indigo-600 text-white">
               <tr>
-                <th className="py-3 px-4 text-left">User ID</th>
                 <th className="py-3 px-4 text-left">Name</th>
                 <th className="py-3 px-4 text-left">Email</th>
                 <th className="py-3 px-4 text-left">Address</th>
@@ -53,8 +52,7 @@ export default function Page() {
             <tbody className="divide-y divide-gray-200">
               {fields.length > 0 ? (
                 fields.map((user) => (
-                  <tr key={user.user_id} className="hover:bg-gray-50">
-                    <td className="py-3 px-4">{user.user_id}</td>
+                  <tr key={user.id} className="hover:bg-gray-50">
                     <td className="py-3 px-4">{user.name}</td>
                     <td className="py-3 px-4">{user.email}</td>
                     <td className="py-3 px-4">{user.address}</td>

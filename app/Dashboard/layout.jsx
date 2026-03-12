@@ -14,7 +14,7 @@ export default function DashboardLayout({children}) {
             </h1>
 
             <div className="hidden md:flex gap-6 text-sm">
-              <Link href="#" className="text-gray-700 hover:text-indigo-600">
+              <Link href="/Dashboard" className="text-gray-700 hover:text-indigo-600">
                 Dashboard
               </Link>
 

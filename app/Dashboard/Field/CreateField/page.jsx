@@ -8,6 +8,7 @@ export default function Page() {
     const [data, setData] = useState({name:'',email:'',address:'',phone:'',date:''})
         const [Error, setError] = useState({name:'',email:'',address:'',phone:'',date:''})
  const [Isloading, setIsloading] = useState(false);
+
  const save = async ()=> {
         setIsloading(true);
         console.log(data)
@@ -18,8 +19,9 @@ export default function Page() {
         router.push("/Dashboard")
         }
         } catch (err) {
+              setIsloading(false);
             console.log(err)
-          //setError(err.response.data)
+          setError(err.response.data)
         }
       }
   return (
@@ -62,8 +64,13 @@ export default function Page() {
 
 
   </div>
-  <p className="w-full py-2.5 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition" onClick={save}> Create Field</p>
 
+     <button type="submit" disabled={Isloading} className={`w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-xl font-semibold  hover:from-blue-700 hover:to-purple-700  transition-all shadow-md  ${Isloading ? "opacity-80 cursor-not-allowed" : ""}`} onClick={save}>
+      {Isloading && (
+        <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+      )}
+      <span>Create Field</span>
+    </button>
 </div>
    </>
   )

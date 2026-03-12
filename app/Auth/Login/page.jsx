@@ -16,13 +16,15 @@ export default function Login() {
 
       const submit = async (e)=> {
         e.preventDefault();
+        setIsloading(true)
         try {
         const resp=await axios.post(`https://invbackend-shqm.onrender.com/api/auth/login`,data,{withCredentials:true})
         if (resp.status==200) {
-                  login(resp.data);
+                login(resp.data);
         router.push("/Dashboard")
         }
         } catch (err) {
+          setIsloading(false)
           seterror(err.response.data)
         }
       }
@@ -53,18 +55,14 @@ export default function Login() {
                 <p className='text-red-600'>{error['password']}</p>
           </div>
 
-         <button className='w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-xl font-semibold  hover:from-blue-700 hover:to-purple-700 transition-all shadow-md ' onClick={submit}>Login</button>
+          <button type="submit" disabled={Isloading} className={`w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-xl font-semibold  hover:from-blue-700 hover:to-purple-700  transition-all shadow-md  ${Isloading ? "opacity-80 cursor-not-allowed" : ""}`} onClick={submit}>
+      {Isloading && (
+        <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+      )}
+      <span>Login</span>
+    </button>
         </form>
 
-        <p className="text-center text-gray-500 text-sm">
-          Don’t have an account?{" "}
-          <a
-            href="Register"
-            className="text-blue-600 font-medium hover:underline"
-          >
-            Sign Up
-          </a>
-        </p>
       </div>
     </div>
   )
