@@ -22,8 +22,8 @@ export default function DashboardLayout({children}) {
                 Projects
               </Link>
 
-              <Link href="#" className="text-gray-700 hover:text-indigo-600">
-                Tasks
+              <Link href="/Dashboard/Field/ViewField" className="text-gray-700 hover:text-indigo-600">
+                Fields
               </Link>
 
               <Link href="#" className="text-gray-700 hover:text-indigo-600">
