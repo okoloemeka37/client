@@ -2,20 +2,22 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { useAuth } from '@/app/context/AuthContext.js';
+import {Trash2} from "lucide-react";
 
-export default function ViewFPage() {
-   const{Server_Url}=useAuth()
-  const [fields, setFields] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+export default function ViewAPage() {
 
-  const getFields = async () => {
+       const{Server_Url}=useAuth()
+        const [agent, setagent] = useState([]);
+        const [loading, setLoading] = useState(false);
+        const [error, setError] = useState(null);
+        
+    const getagent = async () => {
     setLoading(true);
     setError(null);
     try {
-      const resp = await axios.get(`${Server_Url}field/get`, { withCredentials: true });
+      const resp = await axios.get(`${Server_Url}agent/get`, { withCredentials: true });
       if (resp.status === 200) {
-        setFields(resp.data);
+        setagent(resp.data);
       }
     } catch (err) {
       console.log(err);
@@ -26,15 +28,14 @@ export default function ViewFPage() {
   };
 
   useEffect(() => {
-    getFields();
+    getagent();
   }, []);
 
+
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div> <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-7xl mx-auto bg-white shadow-md rounded-lg p-6">
-        <h1 className="text-2xl font-bold text-gray-800 mb-6">
-          Invoice Information
-        </h1>
+        <h1 className="text-2xl font-bold text-gray-800 mb-6">Agents</h1>
 
         {loading && <p className="text-gray-500 mb-4">Loading users...</p>}
         {error && <p className="text-red-500 mb-4">Error: {error}</p>}
@@ -44,23 +45,17 @@ export default function ViewFPage() {
             <thead className="bg-indigo-600 text-white">
               <tr>
                 <th className="py-3 px-4 text-left">Name</th>
-                <th className="py-3 px-4 text-left">Email</th>
-                <th className="py-3 px-4 text-left">Address</th>
-                <th className="py-3 px-4 text-left">Phone</th>
-                <th className="py-3 px-4 text-left">Date</th>
-                <th className="py-3 px-4 text-left">Tracking ID</th>
+                <th className="py-3 px-4 text-left">Agent Id</th>
+                <th className="py-3 px-4 text-left">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {fields.length > 0 ? (
-                fields.map((user) => (
+              {agent.length > 0 ? (
+                agent.map((user) => (
                   <tr key={user.id} className="hover:bg-gray-50">
                     <td className="py-3 px-4">{user.name}</td>
-                    <td className="py-3 px-4">{user.email}</td>
-                    <td className="py-3 px-4">{user.address}</td>
-                    <td className="py-3 px-4">{user.phone}</td>
-                    <td className="py-3 px-4">{user.date}</td>
-                    <td className="py-3 px-4">{user.Tracking_Id}</td>
+                    <td className="py-3 px-4">{user.agentId}</td>
+                    <td className="py-3 px-4"><Trash2/></td>
                   </tr>
                 ))
               ) : (
@@ -76,6 +71,6 @@ export default function ViewFPage() {
           </table>
         </div>
       </div>
-    </div>
-  );
+    </div></div>
+  )
 }

@@ -6,24 +6,24 @@ import  { useRouter } from 'next/navigation'
 import { useAuth } from '@/app/context/AuthContext.js';
 
 
-export default function CreateAPage() {
+export default function CreatePPage() {
       const router=useRouter()
       const [mess, setmess] = useState({message:'',color:''})
-    const [data, setData] = useState({name:'',passcode:''})
-        const [Error, setError] = useState({name:'',passcode:''})
+    const [data, setData] = useState({name:'',price:''})
+        const [Error, setError] = useState({name:'',price:''})
  const [Isloading, setIsloading] = useState(false);
 
  const{Server_Url}=useAuth()
 
  const save = async ()=> {
-  setError({name:'',passcode:''})
+  setError({name:'',price:''})
         setIsloading(true);
         console.log(data)
         try {
-        const resp=await axios.post(`${Server_Url}agent/create`,data,{withCredentials:true})
+        const resp=await axios.post(`${Server_Url}parameter/create`,data,{withCredentials:true})
         console.log(resp)
         if (resp.status==200) {
-          setData({name:'',passcode:''})
+          setData({name:'',price:''})
           setmess(resp.data);
         //router.push("/Dashboard")
         }
@@ -36,7 +36,7 @@ export default function CreateAPage() {
       }
 
       setTimeout(() => {
-        setmess({name:'',passcode:''})
+        setmess({name:'',price:''})
       }, 8000);
   return (
    <>
@@ -48,20 +48,20 @@ export default function CreateAPage() {
 
    <div className="max-w-md mx-auto bg-white shadow-lg rounded-xl p-8 space-y-6">
 
-  <h2 className="text-2xl font-semibold text-gray-800">Create Agent</h2>
+<h2 className="text-2xl font-semibold text-gray-800">Create Parameters</h2>
 
   <div className="space-y-4">
 
     <div>
       <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-      <input placeholder='Field Agent'  value={data.name} onChange={(e)=>{setData(prev=>({...prev,name:e.target.value}))}}  type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"/>
+      <input placeholder='Parameter'  value={data.name} onChange={(e)=>{setData(prev=>({...prev,name:e.target.value}))}}  type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"/>
      <p className='text-red-600'>{Error['name']}</p>
     </div>
 
     <div>
       <label className="block text-sm font-medium text-gray-700 mb-1">Passcode</label>
-      <input placeholder='Agent passcode'  value={data.passcode} onChange={(e)=>{setData(prev=>({...prev,passcode:e.target.value}))}}  type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"/>
-      <p className='text-red-600'>{Error['passcode']}</p>
+      <input placeholder='Price'  value={data.price} onChange={(e)=>{setData(prev=>({...prev,price:e.target.value}))}}  type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"/>
+      <p className='text-red-600'>{Error['price']}</p>
     </div>
   </div>
 

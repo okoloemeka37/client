@@ -17,7 +17,7 @@ export const Authprovider=({ children })=>{
 
   const router=useRouter(); 
  const [userCred, setuserCred] = useState({name:'',email:''})
-//http://localhost:4000
+//http://localhost:4000/api/
  const [Server_Url]=useState("https://invbackend-shqm.onrender.com/api/")
     const [isAuthenticated, setisAuthenticated] = useState(false);
  

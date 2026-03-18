@@ -20,15 +20,16 @@ export default function Login() {
         e.preventDefault();
         setIsloading(true)
         try {
-          setIsloading(false)
+         
         const resp=await axios.post(`${Server_Url}auth/login`,data,{withCredentials:true})
         if (resp.status==200) {
                 login(resp.data);
+                 setIsloading(false)
         router.push("/Dashboard")
         }
         } catch (err) {
-          setIsloading(false)
           seterror(err.response.data)
+          setIsloading(false)
         }
       }
 

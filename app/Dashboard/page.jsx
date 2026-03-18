@@ -5,9 +5,13 @@ import React from "react";
 import {useState}  from 'react'
 import { FileText, UserPlus, Settings, PlusCircle,Eye } from "lucide-react";
 import { useAuth } from '@/app/context/AuthContext.js';
-import ViewFPage from "./Field/ViewField/page.jsx"
+import ViewFPage from "./Field/ViewFields/page.jsx"
 import CreateFPage from "./Field/CreateField/page.jsx"
 import CreateAPage from "./Agent/CreateAgent/page.jsx"
+import ViewAPage from "./Agent/ViewAgent/page.jsx"
+import CreatePPage from "./Parameter/CreateParameter/page.jsx"
+import ViewPPage from "./Parameter/ViewParameter/page.jsx"
+
 export default function Dashboard() {
  const{Server_Url,logout}=useAuth()
   const actions = [
@@ -44,8 +48,9 @@ export default function Dashboard() {
        link:'./Field/CreateField'
     },
   ];
-  const type={'Field':<ViewFPage/>,'CAgent':<CreateAPage/>,'CField':<CreateFPage/>,'def':""}
-const [disType, setdisType] = useState('def')
+  const type={'Field':<ViewFPage/>,'CAgent':<CreateAPage/>,'CField':<CreateFPage/>,'Agent':<ViewAPage/>,'CParameters':<CreatePPage/>,'Parameters':<ViewPPage/>,'def':""}
+
+  const [disType, setdisType] = useState('def')
 
 
 
