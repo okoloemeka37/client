@@ -9,3 +9,19 @@ export async function getSingleField(id) {
 
     return resp
 }
+
+export async function setAgent(agentId,fieldId) {
+    const body={agentId,fieldId};
+    
+    const resp=await axios.post(`${Server_Url}field/setAgent`,body,{withCredentials:true});
+
+    return resp
+}
+
+export async function removeAgent(agentId,fieldId) {
+    const body={agentId,fieldId};
+    
+    const resp=await axios.post(`${Server_Url}field/removeAgent`,body,{withCredentials:true});
+
+    return resp
+}
