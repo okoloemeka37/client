@@ -21,17 +21,17 @@ export default function Login() {
         setIsloading(true)
         try {
          
-        const resp=await axios.post(`${Server_Url}auth/login`,data,{withCredentials:true})
+        const resp=await axios.post(`${Server_Url}auth/AgentLogin`,data,{withCredentials:true})
         if (resp.status==200) {
                 login(resp.data);
                  setIsloading(false)
-        router.push("/Dashboard")
+        router.push("/AgentDash")
         }
         } catch (err) {
           seterror(err.response.data)
-         
+          
         }
-         setIsloading(false)
+        setIsloading(false)
       }
 
   return (
@@ -42,7 +42,7 @@ export default function Login() {
             🔑
           </div>
           <h1 className="text-3xl font-bold text-gray-800">Welcome Back</h1>
-          <p className="text-gray-500 mt-2">Log in to continue</p>
+          <p className="text-gray-500 mt-2">Log in to Field</p>
         </div>
 
         <form className="space-y-4">
@@ -55,7 +55,7 @@ export default function Login() {
           </div>
 
           <div>
-            <label className="block text-gray-600 text-sm mb-1">Password</label> 
+            <label className="block text-gray-600 text-sm mb-1">Passcode</label> 
             <div className='flex items-baseline w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none transition'>
                 <input className='w-full outline-0'  type={show ? "text" : "password"} placeholder="••••••••" value={data.password} onChange={(e)=>{setdata(prev=>({...prev,password:e.target.value}))}}  />
                  <p onClick={() => setShow(!show)}  className=" text-gray-500 hover:text-gray-700">{show ? <EyeOff size={18} /> : <Eye size={18} />}</p>

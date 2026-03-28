@@ -5,7 +5,7 @@ import { useAuth } from '@/app/context/AuthContext.js';
 
 export default function DashboardLayout({children}) {
   const [loading, setloading] = useState(false)
-   const{logout}=useAuth()
+  const{logout}=useAuth()
 
   const logt = async () => {
   setloading(true);

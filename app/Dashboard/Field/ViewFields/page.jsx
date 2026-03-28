@@ -38,7 +38,7 @@ export default function ViewFPage() {
         </h1>
 
         {loading && <p className="text-gray-500 mb-4">Loading users...</p>}
-        {error && <p className="text-red-500 mb-4">Error: {error}</p>}
+        {error && <p className="text-red-500 mb-4">Error: {error[0]}</p>}
 
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-200">

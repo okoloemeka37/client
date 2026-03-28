@@ -1,7 +1,5 @@
 'use client'
 
-import Link from "next/link";
-import React from "react";
 import {useState}  from 'react'
 import { FileText, UserPlus, Settings, PlusCircle,Eye } from "lucide-react";
 import { useAuth } from '@/app/context/AuthContext.js';
@@ -34,7 +32,7 @@ export default function Dashboard() {
     {
       title: "Parameters",
       description: "Configure invoice rules",
-      icon: <Settings size={28} />,
+      icon: <PlusCircle size={28} />,
       view: <Eye size={28} />,
       color: "bg-purple-500",
        link:'./Field/CreateField'

@@ -27,30 +27,35 @@ export const Authprovider=({ children })=>{
 async function checkAuth() {
   try {
     const resp= await axios.get(`${Server_Url}auth/checkAuth`,{withCredentials:true});
+    console.log(resp.data.user)
    setuserCred(resp.data.user)
-   if (Pathname=="/Auth/Login"){
-    router.push('/Dashboard')
-   }
-  console.log(resp.data.user)
-  } catch (error) {
-    if (error.status===401) {
 
-      if (Pathname=="/Auth/Register") {
-        router.push("/Auth/Register")
-      }else{
-      router.push("/Auth/Login")
+    if (resp.data.user.type =="Admin") {
+        router.push('/Dashboard')
+    }else{
+        router.push('/AgentDash')
     }
+   
+  } catch (error) {
+    if (error.status===401 || error.status===404) {
+
+      if (Pathname=="/Auth/Register") {router.push("/Auth/Register")}
+      else if (Pathname=="/Auth/Agent"){ router.push("/Auth/Agent")}
+      else{router.push("/Auth/Login")}
     }
   }
 }
 
 async function logout() {
     try {
+      let role=userCred.type;
       const resp =await axios.get(`${Server_Url}auth/logout`, {withCredentials:true});
       console.log(resp.data)
       setisAuthenticated(false);
       setuserCred({userName:'',email:''})
-       router.push("/Auth/Login")
+      
+      if (role=='Admin') {role=''; router.push("/Auth/Login")}else{role=''; router.push("/Auth/Agent")}
+      
     } catch (error) {
       console.log(error)
     }
@@ -58,6 +63,7 @@ async function logout() {
 
 function login(data) {
     setisAuthenticated(true);
+    console.log(data)
     setuserCred(data.user);
 }
 

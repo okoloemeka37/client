@@ -25,3 +25,22 @@ export async function removeAgent(agentId,fieldId) {
 
     return resp
 }
+
+export async function getAgentField(agentId) {
+
+    const resp=await axios.get(`${Server_Url}agent/getAgentField?agentId=${agentId}`,{withCredentials:true});
+
+    return resp
+}
+
+
+export async function getSingleFA(id) {
+    const resp=await axios.get(`${Server_Url}agent/getSingFA?id=${id}`,{withCredentials:true});
+
+    return resp
+}
+
+export async function SubmitRec(data) {
+    const resp=await axios.post(`${Server_Url}records/create`,data,{withCredentials:true});
+    return resp
+}
