@@ -23,21 +23,7 @@ console.log(userCred)
 
       <div className="max-w-7xl mx-auto space-y-6">
 
-        {/* 👤 Agent Header */}
-        <div className="bg-white rounded-2xl shadow p-6 flex items-center gap-4">
-          <div className="bg-indigo-100 text-indigo-600 p-3 rounded-full">
-            <UserCircle size={32} />
-          </div>
-
-          <div>
-            <h1 className="text-xl font-bold text-gray-800">
-              Welcome back, {userCred.name} 👋
-            </h1>
-            <p className="text-gray-500 text-sm">
-              Here are your assigned fields
-            </p>
-          </div>
-        </div>
+      
 
         {/* 📊 Stats */}
         <div className="grid md:grid-cols-3 gap-6">
@@ -93,24 +79,18 @@ console.log(userCred)
               </thead>
 
               <tbody>
-                {fields?.map((fi) => (
+               
+                {fields.length > 0 ?(fields.map((fi) => (
+
                   <tr key={fi.id} className="border-t hover:bg-gray-50 transition">
 
-                    <td className="py-3 px-4 font-medium">
-                      {fi.name}
-                    </td>
+                    <td className="py-3 px-4 font-medium">{fi.name}</td>
 
-                    <td className="py-3 px-4">
-                      {fi.email}
-                    </td>
+                    <td className="py-3 px-4">{fi.email}</td>
 
-                    <td className="py-3 px-4">
-                      {fi.phone}
-                    </td>
+                    <td className="py-3 px-4"> {fi.phone}</td>
 
-                    <td className="py-3 px-4">
-                      {fi.date}
-                    </td>
+                    <td className="py-3 px-4"> {fi.date} </td>
 
                    {/*  <td className="py-3 px-4">
                       <span
@@ -125,7 +105,7 @@ console.log(userCred)
                     </td>
  */}
                     <td className="py-3 px-4">
-                      <Link href={`AgentDash/AgentField/${fi.id}`}>
+                      <Link href={`/AgentDash/AgentField/${fi.id}`}>
                       <button className="flex items-center gap-1 text-indigo-600 hover:underline hover:cursor-pointer">
                         <Eye size={16} />
                         View
@@ -134,7 +114,8 @@ console.log(userCred)
                     </td>
 
                   </tr>
-                ))}
+
+                ))):(<tr><td colSpan={7} className="text-center py-4 text-gray-500"> No Field Assigned.</td></tr>)}
               </tbody>
 
             </table>

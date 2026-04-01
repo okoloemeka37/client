@@ -37,7 +37,7 @@ export default function CreateAPage() {
 
       setTimeout(() => {
         setmess({message:'',color:''})
-      }, 8000);
+      }, 10000);
   return (
    <>
     {mess.message && (

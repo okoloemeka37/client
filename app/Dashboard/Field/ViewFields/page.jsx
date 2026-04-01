@@ -34,13 +34,14 @@ export default function ViewFPage() {
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-7xl mx-auto bg-white shadow-md rounded-lg p-6">
         <h1 className="text-2xl font-bold text-gray-800 mb-6">
-          Invoice Information
+          Field Information
         </h1>
 
-        {loading && <p className="text-gray-500 mb-4">Loading users...</p>}
+        
         {error && <p className="text-red-500 mb-4">Error: {error[0]}</p>}
 
         <div className="overflow-x-auto">
+          {loading && <p className="text-gray-500 mb-4">Loading users...</p>}
           <table className="min-w-full bg-white border border-gray-200">
             <thead className="bg-indigo-600 text-white">
               <tr>
@@ -52,26 +53,22 @@ export default function ViewFPage() {
                 <th className="py-3 px-4 text-left">Tracking ID</th>
               </tr>
             </thead>
+            
             <tbody className="divide-y divide-gray-200">
               {fields.length > 0 ? (
-                fields.map((field) => (
+                fields.map((field) =>{
+                  const date=new Date(field.updated_at)
+                return  (
                   <tr key={field.id} className="hover:bg-gray-50">
                     <td className="py-3 px-4"><Link href={`Dashboard/Field/ViewFields/${field.id}`}>{field.name}</Link></td>
                     <td className="py-3 px-4">{field.email}</td>
                     <td className="py-3 px-4">{field.address}</td>
                     <td className="py-3 px-4">{field.phone}</td>
-                    <td className="py-3 px-4">{field.date}</td>
+                    <td className="py-3 px-4">{date.toLocaleDateString()}</td>
                     <td className="py-3 px-4">{field.Tracking_Id}</td>
                   </tr>
-                ))
-              ) : (
-                !loading && (
-                  <tr>
-                    <td colSpan={7} className="text-center py-4 text-gray-500">
-                      No Invoice found.
-                    </td>
-                  </tr>
-                )
+                )})
+              ) : (!loading && (<tr><td colSpan={7} className="text-center py-4 text-gray-500"> No Invoice found.</td></tr>)
               )}
             </tbody>
           </table>

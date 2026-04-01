@@ -1,12 +1,12 @@
 'use client'
 import { useState } from "react";
-import { Menu, X, User, LogOut } from "lucide-react";
+import { Menu, X, User, LogOut,UserCircle } from "lucide-react";
 import Link from "next/link";
 import { useAuth } from '@/app/context/AuthContext.js';
 
 
 export default function AgentLayout({children}) {
-     const{Server_Url,logout}=useAuth()
+     const{logout,userCred}=useAuth()
       const [loading, setloading] = useState(false)
        
        const logt = async () => {
@@ -53,7 +53,7 @@ export default function AgentLayout({children}) {
           <div className="relative">
             <button className="flex items-center gap-2 text-gray-700 hover:text-indigo-600">
               <User size={18} />
-              <span>Agent</span>
+              <span>{userCred.name}</span>
             </button>
             {/* You can add a dropdown here if needed */}
           </div>
@@ -92,8 +92,17 @@ export default function AgentLayout({children}) {
       )}
     </nav>
 
+  {/* 👤 Agent Header */}
+        <div className="bg-white rounded-2xl shadow p-6 flex items-center gap-4 pt-24">
+          <div className="bg-indigo-100 text-indigo-600 p-3 rounded-full"><UserCircle size={32} /> </div>
 
- <div className="pt-24">{children}</div>
+          <div>
+            <h1 className="text-xl font-bold text-gray-800">Welcome back, {userCred.name} 👋 </h1>
+            <p className="text-gray-500 text-sm"> Here are your assigned fields </p>
+          </div>
+        </div>
+
+ <div className="">{children}</div>
 
  </>
   );

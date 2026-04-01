@@ -37,7 +37,7 @@ export default function ViewPPage() {
       <div className="max-w-7xl mx-auto bg-white shadow-md rounded-lg p-6">
         <h1 className="text-2xl font-bold text-gray-800 mb-6">Parameters</h1>
 
-        {loading && <p className="text-gray-500 mb-4">Loading Parameters...</p>}
+        
         {error && <p className="text-red-500 mb-4">Error: {error}</p>}
 
         <div className="overflow-x-auto">
@@ -49,6 +49,7 @@ export default function ViewPPage() {
                 <th className="py-3 px-4 text-left">Actions</th>
               </tr>
             </thead>
+            {loading && <p className="text-gray-500 mb-4">Loading Parameters...</p>}
             <tbody className="divide-y divide-gray-200">
               {agent.length > 0 ? (
                 agent.map((user) => (

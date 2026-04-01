@@ -37,10 +37,11 @@ export default function ViewAPage() {
       <div className="max-w-7xl mx-auto bg-white shadow-md rounded-lg p-6">
         <h1 className="text-2xl font-bold text-gray-800 mb-6">Agents</h1>
 
-        {loading && <p className="text-gray-500 mb-4">Loading users...</p>}
+      
         {error && <p className="text-red-500 mb-4">Error: {error}</p>}
 
         <div className="overflow-x-auto">
+            {loading && <p className="text-gray-500 mb-4">Loading Agents...</p>}
           <table className="min-w-full bg-white border border-gray-200">
             <thead className="bg-indigo-600 text-white">
               <tr>
@@ -49,6 +50,7 @@ export default function ViewAPage() {
                 <th className="py-3 px-4 text-left">Actions</th>
               </tr>
             </thead>
+            
             <tbody className="divide-y divide-gray-200">
               {agent.length > 0 ? (
                 agent.map((user) => (
