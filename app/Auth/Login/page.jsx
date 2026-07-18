@@ -46,7 +46,7 @@ export default function Login() {
         </div>
 
         <form className="space-y-4">
-          {error.message&& <div className="bg-red-100 text-red-700 border border-red-300 rounded-lg px-4 py-3">    <p className="text-sm">{error.message}</p></div>}
+          {error.message && <div className="bg-red-100 text-red-700 border border-red-300 rounded-lg px-4 py-3">    <p className="text-sm">{error.message}</p></div>}
            
           <div>
             <label className="block text-gray-600 text-sm mb-1">UserName</label>

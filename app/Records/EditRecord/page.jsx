@@ -4,10 +4,9 @@ import React, { useEffect, useState } from "react";
 import { EditRec,UpdateRec } from "@/app/Functions/Field";
 import AgentLayout from "@/app/AgentDash/layout";
 import DashboardLayout from "@/app/Dashboard/layout";
+import { Suspense } from "react";
 
-
-
-export default function EditRecord() {
+ function EditRecordPage() {
   const router=useRouter()
 
 const params=useSearchParams();
@@ -156,4 +155,12 @@ return (
     </div>
     </>
   );
+}
+
+export default function EditRecord() {
+   return (
+      <Suspense fallback={<div>Loading...</div>}>
+         <EditRecordPage />
+      </Suspense>
+   )
 }
