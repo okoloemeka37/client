@@ -7,14 +7,28 @@ import { getSingleFA, SubmitRec,DelRec } from "@/app/Functions/Field";
 import { useState,useEffect } from "react";
 import Link from "next/link";
 import { ConfirmDelModal } from "@/app/Models/Confrim";
-import AddRecordModal from "../../AgentModal/modal";
 
+import AddRecordModal from "../AgentModal/modal";
 
-export default function FieldRecords() {
+ import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <FieldRecords />
+    </Suspense>
+  );
+}
+
+function FieldRecords() {
+
+ 
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
 
   const{userCred}=useAuth()
-const params=useParams();
-const id=params.ViewField;
+
 const [field, setfield] = useState({});
 const [IsloadData, setIsloadData] = useState(true);
 const [Isloading, setIsloading] = useState(false);

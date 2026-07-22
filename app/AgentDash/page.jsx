@@ -105,7 +105,7 @@ console.log(userCred)
                     </td>
  */}
                     <td className="py-3 px-4">
-                      <Link href={`/AgentDash/AgentField/${fi.id}`}>
+                     <Link href={`/AgentDash/AgentField?id=${fi.id}`}>
                       <button className="flex items-center gap-1 text-indigo-600 hover:underline hover:cursor-pointer">
                         <Eye size={16} />
                         View

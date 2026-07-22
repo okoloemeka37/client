@@ -60,7 +60,7 @@ export default function ViewFPage() {
                   const date=new Date(field.updated_at)
                 return  (
                   <tr key={field.id} className="hover:bg-gray-50">
-                    <td className="py-3 px-4"><Link href={`Dashboard/Field/ViewFields/${field.id}`}>{field.name}</Link></td>
+                    <td className="py-3 px-4"><Link href={`Dashboard/Field/ViewFields/vf?id=${field.id}`}>{field.name}</Link></td>
                     <td className="py-3 px-4">{field.email}</td>
                     <td className="py-3 px-4">{field.address}</td>
                     <td className="py-3 px-4">{field.phone}</td>

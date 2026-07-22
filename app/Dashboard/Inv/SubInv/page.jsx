@@ -57,7 +57,7 @@ export default function ViewSubInvPage() {
                 fields.map((field,id) =>{
                 return  (
                   <tr key={id} className="hover:bg-gray-50">
-                    <td className="py-3 px-4"><Link href={`Dashboard/Inv/Invoice/ViewInvoice/${field.Tracking_Id}`}>{field.Tracking_Id}</Link></td>
+                    <td className="py-3 px-4"><Link href={`Dashboard/Inv/Invoice/ViewInvoice?id=${field.Tracking_Id}`}>{field.Tracking_Id}</Link></td>
                     <td className="py-3 px-4">{field.total_agent}</td>
                     <td className="py-3 px-4">{field.total_records}</td>
                   </tr>

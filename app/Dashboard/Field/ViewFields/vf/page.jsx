@@ -4,8 +4,23 @@ import { Pencil, Trash,ChevronDown } from "lucide-react";
 import { useParams } from "next/navigation";
 import { getSingleField, setAgent } from "../../../../Functions/Field";
 import AgentModal from "../../../../Models/Agents";
+ import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function FieldDetails() {
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <FieldDetails />
+    </Suspense>
+  );
+}
+
+
+function FieldDetails() {
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
+
+
   const [reload,setReload] = useState(false)
   const [field, setfield] = useState({})
   const [agent, setagent] = useState({});
@@ -13,9 +28,6 @@ export default function FieldDetails() {
   const [agn, setagn] = useState([])
     const [loading, setLoading] = useState(true);
      const [mess, setmess] = useState({message:'',color:''})
-
-  const params=useParams();
-  const id=params.id
 const [open, setOpen] = useState(false);
 const [openModal, setOpenModal] = useState(false);
 

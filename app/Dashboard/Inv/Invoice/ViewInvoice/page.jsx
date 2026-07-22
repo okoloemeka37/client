@@ -1,6 +1,6 @@
 'use client'
 
-import { useParams } from "next/navigation";
+
 import { useAuth } from '@/app/context/AuthContext.js';
 import { useEffect,useState } from "react";
 import { getAdminRec,DelRec } from "@/app/Functions/Field";
@@ -8,18 +8,30 @@ import Link from "next/link";
 import {Pencil,Trash2} from "lucide-react";
 import { ConfirmDelModal } from "@/app/Models/Confrim";
 
+  import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AdminRecords />
+    </Suspense>
+  );
+}
 
-export default function AdminRecords() {
+function AdminRecords() {
+
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
+
   const {userCred}=useAuth()
-  const params=useParams();
+  
   const[records,setRecords]=useState([]);
   const[agent,setagent]=useState([]);
   const[field,setfield]=useState([]);
   const [mess, setmess] = useState({message:'',color:''})
   const [rev,setTotalRev]=useState(0)
-  const id=params.Id;
-console.log(id)
+
 /*   const records = [
     {
       id: 1,
